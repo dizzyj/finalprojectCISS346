@@ -5,6 +5,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;  
 import javax.swing.JLabel;  
 import javax.swing.JTextField;
+
+import java.awt.GridBagConstraints;
 import java.awt.event.*;
 
 
@@ -19,12 +21,41 @@ public class LoginPage extends Page{
     boolean subscription;
     public LoginPage(JFrame f){
         super(f);
-        panel.add(labelUsername);  
-        panel.add(username);
-        panel.add(labelPassword);
-        panel.add(password); 
-        panel.add(button); 
-        panel.add(output);
+        GridBagConstraints c = new GridBagConstraints();
+        title.setText("Login/Register");
+        c.gridy = 0;
+        c.gridx = 0;
+        c.ipadx = 4;
+        c.ipady = 4;
+        c.gridwidth = 3;
+        panel.add(title,c);
+        c.gridy = 3;
+        c.gridx = 0;
+        c.gridwidth = 1;
+        panel.add(labelUsername,c); 
+        c.gridy = 3; 
+        c.gridx = 1;
+        c.gridwidth = 1;
+        panel.add(username,c);
+        c.gridy = 4;
+        c.gridx = 0;
+        c.gridwidth = 1;
+        panel.add(labelPassword,c);
+        c.gridy = 4;
+        c.gridx = 1;
+        c.gridwidth = 1;
+        panel.add(password,c); 
+        c.gridy = 5;
+        c.gridx = 0; 
+        c.gridwidth = 1;
+        panel.add(button,c); 
+        JButton registration = new JButton("Register");
+        c.gridy = 5;
+        c.gridx = 1;
+        panel.add(registration,c);
+        c.gridy = 6;
+        c.gridx = 1;
+        panel.add(output,c);
         button.setText("Submit"); 
         button.addActionListener(new ActionListener(){  
             public void actionPerformed(ActionEvent e){ 

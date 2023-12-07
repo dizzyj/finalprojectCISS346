@@ -1,7 +1,9 @@
+import java.awt.GridBagLayout;
+
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import java.awt.FlowLayout; 
+
 
 public class Page {
     protected int backend; //this is the reference to the backend. It is just an int for now.
@@ -11,7 +13,7 @@ public class Page {
     Page(JFrame f){
         this.f = f;
         panel = new JPanel(); 
-        panel.setLayout(new FlowLayout());
+        panel.setLayout(new GridBagLayout());
         title = new JLabel();
     }
 }
