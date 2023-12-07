@@ -1,7 +1,9 @@
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 
-public class Browser {
-    JPanel panel;
-    JFrame f;
+public class Browser extends Page{
+    Browser(JFrame f){
+        super(f);
+        title.setText("Browser");
+        panel.add(title);
+    }
 }
