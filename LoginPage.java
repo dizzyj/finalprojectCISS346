@@ -1,14 +1,13 @@
 /**
  * landingPage
  */ 
+import javax.swing.Action;
 import javax.swing.JButton;  
 import javax.swing.JFrame;  
 import javax.swing.JLabel;  
 import javax.swing.JTextField;
-
 import java.awt.GridBagConstraints;
 import java.awt.event.*;
-
 
 public class LoginPage extends Page{
     
@@ -50,6 +49,13 @@ public class LoginPage extends Page{
         c.gridwidth = 1;
         panel.add(button,c); 
         JButton registration = new JButton("Register");
+        registration.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                if(register(username.getText(),password.getText())){
+                    output.setText("Registration Success!");
+                }
+            }
+        });
         c.gridy = 5;
         c.gridx = 1;
         panel.add(registration,c);
@@ -90,6 +96,11 @@ public class LoginPage extends Page{
         //this is a mockup function that gets data from the backend
         //this will also check if the account has an active subscription
         subscription = false;
+        return true;
+    }
+    boolean register(String username, String password){
+        //this takes the username and password and sends it to the backend
+        //hard coded for now.
         return true;
     }
 }
