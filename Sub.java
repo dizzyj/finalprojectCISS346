@@ -98,19 +98,26 @@ public class Sub extends Page{
         purchase.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
                 //this should send cc information to backend for now it just goes back to login screen.
-                f.add(new Browser(f).panel);
-                f.remove(panel);
-                f.revalidate();
+                if(sendInfo()){
+                    f.add(new Browser(f).panel);
+                    f.remove(panel);
+                    f.revalidate();
+                }
             }
         });
 
     }
-    void getInfo(){
+    private void getInfo(){
         //this gets relevant info from backend DB
         //for now everthing is hard coded.
         daysRemaining = 0;
         username = "username";
         costPerDay = 0.50f;
 
+    }
+    //this should send the purchase request to the back end and wait for response. Returns true of purchase was
+    //success
+    private boolean sendInfo(){
+        return true;
     }
 }
