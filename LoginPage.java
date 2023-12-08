@@ -3,15 +3,15 @@
  */ 
 import javax.swing.JButton;  
 import javax.swing.JFrame;  
-import javax.swing.JLabel;  
+import javax.swing.JLabel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import java.awt.GridBagConstraints;
 import java.awt.event.*;
 
 public class LoginPage extends Page{
     
     JTextField username = new JTextField(10);
-    JTextField password = new JTextField(10);
+    JPasswordField password = new JPasswordField(10);
     JLabel labelUsername = new JLabel("Username:");  
     JLabel labelPassword = new JLabel("Password:"); 
     JLabel output = new JLabel(); 
@@ -19,7 +19,6 @@ public class LoginPage extends Page{
     boolean subscription;
     public LoginPage(JFrame f){
         super(f);
-        GridBagConstraints c = new GridBagConstraints();
         title.setText("Login/Register");
         c.gridy = 0;
         c.gridx = 0;
@@ -50,7 +49,7 @@ public class LoginPage extends Page{
         JButton registration = new JButton("Register");
         registration.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
-                if(register(username.getText(),password.getText())){
+                if(register(username.getText(),password.getPassword())){
                     output.setText("Registration Success!");
                 }
             }
@@ -65,20 +64,22 @@ public class LoginPage extends Page{
         button.addActionListener(new ActionListener(){  
             public void actionPerformed(ActionEvent e){ 
                 //this is hard coded for testing. Real code should sanitize input and send to backend
-                if(validate(username.getText(), password.getText(), backend)){
+                if(validate(username.getText(), password.getPassword(), backend)){
                     output.setText("Login Success");
                     if(subscription){
-                        panel.setVisible(false);
                         f.add(new Browser(f).panel);
+                        f.remove(panel);
+                        f.revalidate();
                     }else{
-                        panel.setVisible(false);
                         f.add(new Sub(f).panel);
+                        f.remove(panel);
+                        f.revalidate();
                     }
                 }
             }  
         });
     }
-    boolean validate(String username, String Password, int backend){
+    private boolean validate(String username, char[]  Password, int backend){
         // this should send sanitized username and password to backend for validation
         //returns true for now.
         long startTime = System.currentTimeMillis(); //fetch starting time
@@ -91,13 +92,13 @@ public class LoginPage extends Page{
         output.setText("Login Failed");
         return false;
     }
-    boolean backendGet(){
+    private boolean backendGet(){
         //this is a mockup function that gets data from the backend
         //this will also check if the account has an active subscription
         subscription = false;
         return true;
     }
-    boolean register(String username, String password){
+    private boolean register(String username, char[] password){
         //this takes the username and password and sends it to the backend
         //hard coded for now.
         return true;
